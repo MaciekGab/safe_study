@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "883802312723",
+    "project_id": "safe-study",
+    "storage_bucket": "safe-study.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883802312723:android:9ba4e527e7918bc2f86fe6",
+        "android_client_info": {
+          "package_name": "com.maciejgabryszewski.safe_study"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883802312723-8vbr146gvotfglocrri5ordvc22o31rq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBywL8b045-bCDsi-ssO1J5rgHUCvn8KHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883802312723-8vbr146gvotfglocrri5ordvc22o31rq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
