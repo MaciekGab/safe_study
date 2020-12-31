@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_study/screens/authenticate/authenticate.dart';
 import 'package:safe_study/screens/home/home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -6,6 +7,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // zwraca albo ekran główny albo ekran logowania
-    return Home();
+    return Authenticate();
   }
 }

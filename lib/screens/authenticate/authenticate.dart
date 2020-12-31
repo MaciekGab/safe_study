@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_study/screens/authenticate/sign_in.dart';
 
 class Authenticate extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _AuthenticateState extends State<Authenticate> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          child: Center(child: Text('authenticate')),
+          child: SignIn()
         ),
       ),
     );
