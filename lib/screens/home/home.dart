@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:safe_study/authentication_service.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -6,7 +8,17 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          child: Center(child: Text('home')),
+          child: Column(
+            children: [
+              Center(child: Text('home')),
+              RaisedButton(
+                onPressed: () {
+                  context.read<AuthenticationService>().singOut();
+                },
+                child: Text("Sign out"),
+              )
+            ],
+          ),
         ),
       ),
     );
