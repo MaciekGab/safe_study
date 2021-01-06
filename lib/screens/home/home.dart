@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
     final firebaseUser = context.watch<User>();
     DatabaseService databaseService = DatabaseService(uid: firebaseUser.uid);
     return
+    //TODO: change StreamBuilder to Provider
     //   MultiProvider(providers: [
     //   Provider<DatabaseService>(
     //       create: (_) => DatabaseService(uid: firebaseUser.uid)),
