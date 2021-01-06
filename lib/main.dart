@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_study/authentication_service.dart';
+import 'package:safe_study/database_service.dart';
 import 'package:safe_study/screens/auth_wrapper.dart';
 
 Future<void> main() async {
@@ -20,10 +22,12 @@ class MyApp extends StatelessWidget {
         Provider<AuthenticationService>(
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
+
         StreamProvider(
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,
-        )
+        ),
+
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -28,6 +28,7 @@ dependencies:
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   provider: ^4.3.2+3
+  slide_button: ^0.2.9
 
 dev_dependencies:
   flutter_test:

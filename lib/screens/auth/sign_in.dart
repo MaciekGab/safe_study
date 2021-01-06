@@ -12,37 +12,57 @@ class _SignInState extends State<SignIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  //TODO: Implement validation to both inputs
+  //TODO: Add loading screen - something like circularProgressIndicator or custom form pub.dev
+  //TODO: Implement UI
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-          children: [
-        TextFormField(
-          controller: emailController,
-          decoration: InputDecoration(labelText: "Email"),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    stops: [0.5, 0.9],
+                    colors: [Colors.white, Color.fromRGBO(205, 160, 241, 1)])),
+            child: Column(
+                children: [
+                  SizedBox(height: 450,),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(labelText: "Email", suffixIcon: Icon(Icons.person)),
+              ),
+                  TextField(
+                controller: passwordController,
+                decoration: InputDecoration(labelText: "Password"),
+              ),
+              RaisedButton(
+                  onPressed: () {
+                    context.read<AuthenticationService>().signIn(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                    print(emailController.text.trim());
+                    print(passwordController.text);
+                  },
+                  child: Text("Sign in")),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Nie masz konta?"),
+                      TextButton(onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                      }, child: Text("Zarestruj się"))
+                    ],
+                  ),
+            ]),
+          ),
         ),
-        TextFormField(
-          controller: passwordController,
-          decoration: InputDecoration(labelText: "Password"),
-        ),
-        RaisedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signIn(
-                  email: emailController.text.trim(),
-                  password: passwordController.text.trim());
-            },
-            child: Text("Sign in")),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Nie masz konta?"),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                }, child: Text("Zarestruj się"))
-              ],
-            ),
-      ]),
+      ),
     );
   }
 }
