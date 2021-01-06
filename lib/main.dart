@@ -3,9 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:safe_study/authentication_service.dart';
-import 'package:safe_study/database_service.dart';
-import 'package:safe_study/screens/auth_wrapper.dart';
+import 'package:safe_study/services/authentication_service.dart';
+import 'package:safe_study/user_data_provider.dart';
+
+import 'model/user_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // final firebaseUser = context.watch<User>();
     return MultiProvider(
       providers: [
         Provider<AuthenticationService>(
@@ -25,26 +27,14 @@ class MyApp extends StatelessWidget {
 
         StreamProvider(
           create: (context) =>
-              context.read<AuthenticationService>().authStateChanges,
+          context
+              .read<AuthenticationService>()
+              .authStateChanges,
         ),
-
+        // StreamProvider<UserModel>.value(value: DatabaseService(uid: firebaseUser.uid).streamUser)
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
-        home: AuthWrapper(),
-      ),
+      child: UserDataProvider(),
     );
   }
 }
+

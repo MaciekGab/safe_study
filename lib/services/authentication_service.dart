@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:safe_study/database_service.dart';
+import 'database_service.dart';
 
 class AuthenticationService {
   final FirebaseAuth _auth;

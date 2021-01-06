@@ -1,18 +1,30 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../authentication_service.dart';
+import 'package:safe_study/model/user_model.dart';
+import '../../services/authentication_service.dart';
 import '../profile.dart';
 
 class HomeUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
+    final user = context.watch<UserModel>();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(205, 160, 241, 1),
-        ),
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [
+                    Color.fromRGBO(112, 35, 238, 0.5),
+                    Color.fromRGBO(112, 35, 238, 1)
+                  ])),
+            ),
+          ),
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -22,7 +34,7 @@ class HomeUser extends StatelessWidget {
                   colors: [Colors.white, Color.fromRGBO(205, 160, 241, 1)])),
           child: Column(
             children: [
-              Center(child: Text('home')),
+              Center(child: Text('Witaj ' + user.name + ' - ' + user.role)),
               Center(child: Text(firebaseUser.email)),
               RaisedButton(
                 onPressed: () {
@@ -63,15 +75,6 @@ class HomeUser extends StatelessWidget {
                           style: TextStyle(fontSize: 20)),
                     ),
                   ),
-                  // RaisedButton(
-                  //     textColor: Colors.white,
-                  //
-                  //     child: Text("Search"),
-                  //     onPressed: () {},
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.only(
-                  //       topLeft: Radius.circular(20.0),bottomLeft: Radius.circular(20.0),
-                  //     ))),
                 ],
               )
             ],

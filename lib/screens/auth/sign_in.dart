@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safe_study/authentication_service.dart';
+import 'file:///C:/Users/mgmac/IdeaProjects/safe_study/lib/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_study/screens/auth/sign_up.dart';
 
@@ -19,47 +19,51 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    stops: [0.5, 0.9],
-                    colors: [Colors.white, Color.fromRGBO(205, 160, 241, 1)])),
-            child: Column(
-                children: [
-                  SizedBox(height: 450,),
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(labelText: "Email", suffixIcon: Icon(Icons.person)),
-              ),
-                  TextField(
-                controller: passwordController,
-                decoration: InputDecoration(labelText: "Password"),
-              ),
-              RaisedButton(
-                  onPressed: () {
-                    context.read<AuthenticationService>().signIn(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                    print(emailController.text.trim());
-                    print(passwordController.text);
-                  },
-                  child: Text("Sign in")),
+        body: Container(
+          height: size.height,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  stops: [0.5, 0.9],
+                  colors: [Colors.white, Color.fromRGBO(205, 160, 241, 1)])),
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                  children: [
+                    SizedBox(height: 450,),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(labelText: "Email", suffixIcon: Icon(Icons.person)),
+                ),
+                    TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(labelText: "Password"),
+                ),
+                RaisedButton(
+                    onPressed: () {
+                      var result = context.read<AuthenticationService>().signIn(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim());
+                      // if(result.toString() == 'user-not-found')
+                          print(result);
+                    },
+                    child: Text("Sign in")),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Nie masz konta?"),
-                      TextButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                      }, child: Text("Zarestruj się"))
-                    ],
-                  ),
-            ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Nie masz konta?"),
+                        TextButton(onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                        }, child: Text("Zarestruj się"))
+                      ],
+                    ),
+              ]),
+            ),
           ),
         ),
       ),

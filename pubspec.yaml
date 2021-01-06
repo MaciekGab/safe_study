@@ -29,6 +29,7 @@ dependencies:
   firebase_core: ^0.5.3
   provider: ^4.3.2+3
   slide_button: ^0.2.9
+  gradient_app_bar: ^0.1.3
 
 dev_dependencies:
   flutter_test:
