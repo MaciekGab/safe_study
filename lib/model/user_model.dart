@@ -15,4 +15,13 @@ class UserModel {
       role: data['role'],
     );
   }
+
+  factory UserModel.fromMap(Map data){
+    // Map data = documentSnapshot.data();
+    return UserModel(
+      name: data['name'],
+      surname: data['surname'],
+      role: data['role'],
+    );
+  }
 }

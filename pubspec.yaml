@@ -28,8 +28,10 @@ dependencies:
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   provider: ^4.3.2+3
+  passwordfield: ^0.0.82
+  email_validator: ^1.0.5
   slide_button: ^0.2.9
-  gradient_app_bar: ^0.1.3
+  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:

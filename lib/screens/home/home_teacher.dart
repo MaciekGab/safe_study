@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:safe_study/SizeConfig.dart';
 import 'package:safe_study/model/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:safe_study/widgets/app_bar_with_gradient.dart';
 import 'package:safe_study/widgets/menu_rounded_button.dart';
 import 'package:safe_study/widgets/profile_button.dart';
 import 'package:safe_study/widgets/text_with_rounded_container.dart';
+import '../../SizeConfig.dart';
 import '../../services/authentication_service.dart';
 import '../profile.dart';
 
-class HomeUser extends StatelessWidget {
+class HomeTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
@@ -23,21 +23,32 @@ class HomeUser extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: SizeConfig.safeBlockVertical * 5,
+                height: SizeConfig.safeBlockVertical * 8,
               ),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextRounded(
-                  text: "Witaj, ${firebaseUser.email}",
+                  text: "Witaj, ${user.name}",
                   roundedSide: 'left',
-                  screenPercentageHeight: 10,
-                  screenPercentageWidth: 65,
+                  screenPercentageWidth: 10,
+                  screenPercentageHeight: 65,
                 ),
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 8,
               ),
               Align(
+                alignment: Alignment.centerLeft,
+                child: MenuRoundedButton(
+                  onPressed: () {},
+                  text: 'Stwórz do spotkania',
+                  iconName: Icons.group_add,
+                  roundedSide: 'right',
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical * 5,
+              ),              Align(
                 alignment: Alignment.centerLeft,
                 child: MenuRoundedButton(
                   onPressed: () {},
@@ -52,9 +63,7 @@ class HomeUser extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: MenuRoundedButton(
-                  onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => testScreen()));
-                  },
+                  onPressed: () {},
                   text: 'Zgłoś',
                   iconName: Icons.local_hospital_outlined,
                   roundedSide: 'right',
@@ -77,5 +86,6 @@ class HomeUser extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

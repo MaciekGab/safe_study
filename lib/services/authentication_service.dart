@@ -37,7 +37,7 @@ class AuthenticationService {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      await DatabaseService(uid: result.user.uid).updateUserData(name, surname, 'user');
+      await DatabaseService().updateUserData(name, surname, 'user',result.user.uid);
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       print(e.message + ' with error code : ${e.code}');

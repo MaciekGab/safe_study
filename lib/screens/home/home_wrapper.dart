@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'file:///C:/Users/mgmac/IdeaProjects/safe_study/lib/services/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:safe_study/model/user_model.dart';
-import 'package:safe_study/screens/home/home_admin.dart';
+import 'package:safe_study/screens/home/home_teacher.dart';
 import 'package:safe_study/screens/home/home_user.dart';
 import 'package:safe_study/screens/profile.dart';
 import 'package:safe_study/services/database_service.dart';
@@ -14,12 +13,12 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-    final user = Provider.of<UserModel>(context);
-    DatabaseService databaseService = DatabaseService(uid: firebaseUser.uid);
+    UserModel user = Provider.of<UserModel>(context);
+    // DatabaseService databaseService = DatabaseService(uid: firebaseUser.uid);
     if (user == null)
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     if (user.role == 'admin')
-      return HomeAdmin();
+      return HomeTeacher();
     return HomeUser();
     // StreamBuilder(
     //     stream: databaseService.streamUser,
